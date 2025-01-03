@@ -12,7 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css-default/product.css">
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
@@ -27,16 +27,16 @@
             </a>
         </div>
         <nav class="nav">
-            <a href="#home">Beranda</a>
+            <a href="/beranda">Beranda</a>
             <a href="#about">Tentang Kami</a>
             <a href="#produk">Produk Kami</a>
         </nav>
         <div class="header-icons">
             <div class="icon cart">
-                <img src="icon/cart-icon.png" alt="Cart">
+                <img src="{{ asset('icon/cart-icon.png') }}" alt="Cart">
             </div>
             <div class="icon profile dropdown">
-                <img src="icon/user-icon.png" alt="Profile" class="dropdown-toggle">
+                <img src="{{ asset('icon/user-icon.png') }}" alt="Profile" class="dropdown-toggle">
                 <div class="dropdown-menu">
                     <div class="user-info">
                         <p class="user-name">user</p>
@@ -51,35 +51,38 @@
 
     </header>
 
-    <h1 class="judul-kategori" id="produk">Pot
+    <h1 class="judul-kategori" id="produk">
+        {{ $categoryName }}
         <span class="underline"></span>
     </h1>
     <a class="back-icon" href="/">
-        <img src="icon/left.png" alt="back"> Kembali
+        <img src="{{ asset('icon/left.png') }}" alt="back"> Kembali
     </a>
 
     {{-- product --}}
 
     <div class="product-container">
+        @foreach ($products as $product)
             <div class="product-card">
-                <a href="/detail" class="product-image-link">
+                <a href="{{ route('products.detail', ['category' => $product->category->slug, 'slug' => $product->slug]) }}" class="product-image-link">
                     <div class="product-image">
-                        <img src="/img/celengan/celengan1-depan.jpg" alt="">
+                        <img src="{{ asset('storage/' . $product->category->slug . '/' . $product->thumbnail) }}" alt="{{ $product->name }}">
+
                     </div>
                 </a>
                 <div class="product-info">
                     <div class="product-details">
-                        <h3 class="product-name">Nama Produk</h3>
-                        <p class="product-price">
-                            <p class="product-price">Rp 50.000</p>
-                        </p>
+                        <h3 class="product-name">{{ $product->name }}</h3>
+                        <p class="product-price">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
                     </div>
                     <a href="#" class="keranjang">
-                        <img src="icon/cart-warna.png" alt="Keranjang" width="24" height="24">
+                        <img src="{{ asset('icon/cart-warna.png') }}" alt="Keranjang" width="24" height="24">
                     </a>
                 </div>
             </div>
+        @endforeach
     </div>
+   
 
     {{-- footer --}}
 
@@ -104,19 +107,19 @@
                 <ul class="kontak">
                     <li>
                         <a href="https://www.instagram.com/">
-                            <img src="icon/instagram.png" alt="Instagram" class="social-icon">
+                            <img src="{{ asset('icon/instagram.png') }}" alt="Instagram" class="social-icon">
                         </a>
                         <p>ud.amertasedana</p>
                     </li>
                     <li>
                         <a href="https://wa.me/">
-                            <img src="icon/whatsapp.png" alt="WhatsApp" class="social-icon">
+                            <img src="{{ asset('icon/whatsapp.png') }}" alt="WhatsApp" class="social-icon">
                         </a>
                         <p>+6281234567890</p>
                     </li>
                     <li>
                         <a href="mailto:ud.amertasedana@gmail.com">
-                            <img src="icon/mail.png" alt="Email" class="social-icon">
+                            <img src="{{ asset('icon/mail.png') }}" alt="Email" class="social-icon">
                         </a>
                         <p>ud.amertasedana@gmail.com</p>
                     </li>
@@ -137,7 +140,6 @@
         </div>
 
     </footer>
-    <script src="js/celengan.js"></script>
     <script>
         // Inisialisasi Feather Icons
         feather.replace();

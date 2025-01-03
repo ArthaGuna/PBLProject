@@ -1,24 +1,20 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
+
 
 // Halaman
 Route::get('/', function () {
     return view('beranda');
 });
-Route::get('/detail', function () {
-    return view('detail');
-});
-Route::get('/celengan', function () {
-    return view('celengan');
-});
-Route::get('/dekorasi', function () {
-    return view('dekorasi');
-});
-Route::get('/patung', function () {
-    return view('patung');
-});
-Route::get('/pot', function () {
-    return view('pot');
-});
 
+
+// Route ke kategori
+Route::get('products/{category}', [ProductsController::class, 'showByCategory'])->name('products.category');
+
+// Route untuk menampilkan detail produk berdasarkan slug
+Route::get('products/{slug}', [ProductsController::class, 'show'])->name('products.detail');
+
+// Controller
+Route::get('products', [ProductsController::class, 'index'])->name('products.index');

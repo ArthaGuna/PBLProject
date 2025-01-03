@@ -12,7 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css-default/beranda.css">
+    <link rel="stylesheet" href="css/beranda.css">
 </head>
 
 <body>
@@ -104,25 +104,28 @@
             <span class="underline"></span>
         </h1>
         <div class="card-container">
-            <a href="/celengan" class="card">
+            <a href="{{ route('products.category', ['category' => 'celengan']) }}" class="card">
                 <img src="img/kategori-celengan.jpg" alt="Kategori 1">
                 <div class="card-overlay">
                     <h2>CELENGAN</h2>
                 </div>
             </a>
-            <a href="/dekorasi" class="card">
+            <!-- Mengarahkan ke kategori dekorasi -->
+            <a href="{{ route('products.category', ['category' => 'dekorasi']) }}" class="card">
                 <img src="img/kategori-dekorasi.jpg" alt="Kategori 2">
                 <div class="card-overlay">
                     <h2>DEKORASI</h2>
                 </div>
             </a>
-            <a href="/patung" class="card">
+            <!-- Mengarahkan ke kategori patung -->
+            <a href="{{ route('products.category', ['category' => 'patung']) }}" class="card">
                 <img src="img/kategori-patung.jpg" alt="Kategori 3">
                 <div class="card-overlay">
                     <h2>PATUNG</h2>
                 </div>
             </a>
-            <a href="/pot" class="card">
+            <!-- Mengarahkan ke kategori pot -->
+            <a href="{{ route('products.category', ['category' => 'pot']) }}" class="card">
                 <img src="img/kategori-pot.jpg" alt="Kategori 4">
                 <div class="card-overlay">
                     <h2>POT</h2>
